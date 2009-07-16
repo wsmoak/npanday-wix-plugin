@@ -16,11 +16,13 @@ package npanday.plugin.wix;
  * limitations under the License.
  */
 
+import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecutor;
+import org.apache.commons.exec.ExecuteException;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -50,7 +52,20 @@ public class CandleMojo
         	throw new MojoExecutionException( "Source file does not exist " + sourceFile );
         }
 
-        //TODO: execute candle
-        
+        try {
+          String line = "candle " + sourceFile.getAbsolutePath();
+          CommandLine commandLine = CommandLine.parse(line);
+          DefaultExecutor executor = new DefaultExecutor();
+          int exitValue = executor.execute(commandLine);
+          
+          if ( exitValue != 0 ) {
+        	  throw new MojoExecutionException( "Problem executing candle, return code " + exitValue );
+          }
+         
+        } catch (ExecuteException e) {
+          throw new MojoExecutionException( "Problem executing candle", e );
+        } catch (IOException e ) {
+          throw new MojoExecutionException( "Problem executing candle", e );
+        }
     }
 }
