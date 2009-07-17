@@ -1,28 +1,28 @@
 <?xml version='1.0' encoding='windows-1252'?>
 <Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
-  <Product Name='Foobar 1.0' Id='6E390708-A2AD-4269-8CE0-561D72DFCFF3'
-    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Acme Ltd.'>
+  <Product Name='Thing 1.0' Id='6E390708-A2AD-4269-8CE0-561D72DFCFF3'
+    Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Sample Inc.'>
 
     <Package Id='5902BCD6-12B9-4F38-BF6B-2C30F825FFED' Keywords='Installer'
-      Description="Acme's Foobar 1.0 Installer"
-      Comments='Foobar is a registered trademark of Acme Ltd.' Manufacturer='Acme Ltd.'
+      Description="Sample Inc's Thing 1.0 Installer"
+      Comments='Thing is a registered trademark of Sample Inc.' Manufacturer='Sample Inc.'
       InstallerVersion='100' Languages='1033' Compressed='yes' SummaryCodepage='1252' />
 
     <Media Id='1' Cabinet='Sample.cab' EmbedCab='yes' DiskPrompt="CD-ROM #1" />
-    <Property Id='DiskPrompt' Value="Acme's Foobar 1.0 Installation [1]" />
-
+    <Property Id='DiskPrompt' Value="Sample's Thing 1.0 Installation [1]" />
+Thing
     <Directory Id='TARGETDIR' Name='SourceDir'>
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
-        <Directory Id='Acme' Name='Acme'>
-          <Directory Id='INSTALLDIR' Name='Foobar10' LongName='Foobar 1.0'>
+        <Directory Id='Sample' Name='Sample'>
+          <Directory Id='INSTALLDIR' Name='Thing10' LongName='Thing 1.0'>
 
             <Component Id='MainExecutable' Guid='059035F2-A47C-4407-8459-0597276DF276'>
-              <File Id='FoobarEXE' Name='Foobar10.exe' LongName='FoobarAppl10.exe' DiskId='1'
-                Source='FoobarAppl10.exe' Vital='yes'>
-                <Shortcut Id="startmenuFoobar10" Directory="ProgramMenuDir" Name="Foobar10" 
-                  LongName="Foobar 1.0" WorkingDirectory='INSTALLDIR' Icon="Foobar10.exe" IconIndex="0" />
-                <Shortcut Id="desktopFoobar10" Directory="DesktopFolder" Name="Foobar10"
-                  LongName="Foobar 1.0" WorkingDirectory='INSTALLDIR' Icon="Foobar10.exe" IconIndex="0" />
+              <File Id='ThingEXE' Name='Thing10.exe' LongName='ThingAppl10.exe' DiskId='1'
+                Source='ThingAppl10.exe' Vital='yes'>
+                <Shortcut Id="startmenuThing10" Directory="ProgramMenuDir" Name="Thing10" 
+                  LongName="Thing 1.0" WorkingDirectory='INSTALLDIR' Icon="Thing10.exe" IconIndex="0" />
+                <Shortcut Id="desktopThing10" Directory="DesktopFolder" Name="Thing10"
+                  LongName="Thing 1.0" WorkingDirectory='INSTALLDIR' Icon="Thing10.exe" IconIndex="0" />
               </File>
               <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
             </Component>
@@ -42,7 +42,7 @@
       </Directory>
 
       <Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
-        <Directory Id="ProgramMenuDir" Name='Foobar10' LongName="Foobar 1.0" />
+        <Directory Id="ProgramMenuDir" Name='Thing10' LongName="Thing 1.0" />
       </Directory>
 
       <Directory Id="DesktopFolder" Name="Desktop" />
@@ -54,7 +54,7 @@
       <ComponentRef Id='Manual' />
     </Feature>
 
-    <Icon Id="Foobar10.exe" SourceFile="FoobarAppl10.exe" />
+    <Icon Id="Thing10.exe" SourceFile="ThingAppl10.exe" />
 
   </Product>
 </Wix>

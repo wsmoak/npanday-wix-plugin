@@ -1,0 +1,1 @@
+clean npanday.plugin:npanday-wix-plugin:candle
