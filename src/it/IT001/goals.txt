@@ -1,1 +1,1 @@
-clean npanday.plugin:npanday-wix-plugin:candle
+npanday.plugin:npanday-wix-plugin:candle
