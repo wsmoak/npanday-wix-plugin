@@ -1,0 +1,1 @@
+npanday.plugin:npanday-wix-plugin:light
