@@ -18,7 +18,9 @@
         <artifactId>npanday-wix-plugin</artifactId>
         <version>1.0-SNAPSHOT</version>
         <configuration>
-          <sourceFile>Sample.wxs</sourceFile>
+          <sourceFiles>
+            <sourceFile>Sample.wxs</sourceFile>
+          </sourceFiles>
         </configuration>
       </plugin>
     </plugins>

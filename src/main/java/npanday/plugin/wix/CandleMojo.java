@@ -40,20 +40,24 @@ public class CandleMojo
      * @parameter expression="${sourceFile}"
      * @required
      */
-    private File sourceFile;
+    private File[] sourceFiles;
 
     public void execute()
         throws MojoExecutionException
     {
-        File f = sourceFile;
-
-        if ( !f.exists() )
-        {
-        	throw new MojoExecutionException( "Source file does not exist " + sourceFile );
+        String paths = "";
+        for (int x = 0; x < sourceFiles.length; x++) {
+          File f = sourceFiles[x];
+          if ( !f.exists() )
+          {
+         	throw new MojoExecutionException( "Source file does not exist " + sourceFiles[x] );
+          } else {
+	        paths = paths + sourceFiles[x].getAbsolutePath() + " ";
+          }
         }
 
         try {
-          String line = "candle " + sourceFile.getAbsolutePath();
+          String line = "candle " + paths;
           CommandLine commandLine = CommandLine.parse(line);
           DefaultExecutor executor = new DefaultExecutor();
           int exitValue = executor.execute(commandLine);
