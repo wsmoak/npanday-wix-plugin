@@ -36,8 +36,8 @@ public class CandleMojo
     extends AbstractMojo
 {
     /**
-     * Location of the WiX source file.
-     * @parameter expression="${sourceFile}"
+     * Location of the WiX source files.
+     * @parameter expression="${sourceFiles}"
      * @required
      */
     private File[] sourceFiles;
