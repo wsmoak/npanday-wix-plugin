@@ -36,36 +36,52 @@ public class LightMojo
     extends AbstractMojo
 {
     /**
-     * Location of the WiX object file.
-     * @parameter expression="${objectFile}"
+     * Location of the WiX object files.
+     * @parameter expression="${objectFiles}"
      * @required
      */
-    private File objectFile;
+    private File[] objectFiles;
+    
+    /**
+     * Output file
+     * @parameter expression="${outputFile}"
+     */
+    private String outputFile;
 
     public void execute()
         throws MojoExecutionException
     {
-        File f = objectFile;
 
-        if ( !f.exists() )
-        {
-        	throw new MojoExecutionException( "Source file does not exist " + objectFile );
+        String paths = "";
+        for (int x = 0; x < objectFiles.length; x++) {
+          File f = objectFiles[x];
+          if ( !f.exists() )
+          {
+         	throw new MojoExecutionException( "Object file does not exist " + objectFiles[x] );
+          } else {
+	        paths = paths + objectFiles[x].getAbsolutePath() + " ";
+          }
         }
 
         try {
-          String line = "light " + objectFile.getAbsolutePath();
+          String line = "light " + paths;
+          
+          if (outputFile != null) {
+        	  line = line + " -o " + outputFile;
+          }
+          
           CommandLine commandLine = CommandLine.parse(line);
           DefaultExecutor executor = new DefaultExecutor();
           int exitValue = executor.execute(commandLine);
           
           if ( exitValue != 0 ) {
-        	  throw new MojoExecutionException( "Problem executing candle, return code " + exitValue );
+        	  throw new MojoExecutionException( "Problem executing light, return code " + exitValue );
           }
          
         } catch (ExecuteException e) {
-          throw new MojoExecutionException( "Problem executing candle", e );
+          throw new MojoExecutionException( "Problem executing light", e );
         } catch (IOException e ) {
-          throw new MojoExecutionException( "Problem executing candle", e );
+          throw new MojoExecutionException( "Problem executing light", e );
         }
     }
 }

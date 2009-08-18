@@ -18,7 +18,9 @@
         <artifactId>wix-maven-plugin</artifactId>
         <version>1.0-SNAPSHOT</version>
         <configuration>
-          <objectFile>Sample.wixobj</objectFile>
+          <objectFiles>
+	    <objectFile>Sample.wixobj</objectFile>
+	  </objectFiles>
         </configuration>
       </plugin>
     </plugins>
