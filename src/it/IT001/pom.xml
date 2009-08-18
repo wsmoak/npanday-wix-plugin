@@ -15,7 +15,7 @@
     <plugins>
       <plugin>
         <groupId>npanday.plugin</groupId>
-        <artifactId>npanday-wix-plugin</artifactId>
+        <artifactId>wix-maven-plugin</artifactId>
         <version>1.0-SNAPSHOT</version>
         <configuration>
           <sourceFiles>

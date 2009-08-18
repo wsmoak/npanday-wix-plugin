@@ -1,1 +1,1 @@
-npanday.plugin:npanday-wix-plugin:light
+npanday.plugin:wix-maven-plugin:light
