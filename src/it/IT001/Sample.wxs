@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='windows-1252'?>
-<Wix xmlns='http://schemas.microsoft.com/wix/2003/01/wi'>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <Product Name='Thing 1.0' Id='6E390708-A2AD-4269-8CE0-561D72DFCFF3'
     Language='1033' Codepage='1252' Version='1.0.0' Manufacturer='Sample Inc.'>
 
@@ -13,17 +13,17 @@
     <Directory Id='TARGETDIR' Name='SourceDir'>
       <Directory Id='ProgramFilesFolder' Name='PFiles'>
         <Directory Id='Sample' Name='Sample'>
-          <Directory Id='INSTALLDIR' Name='Thing10' LongName='Thing 1.0'>
+          <Directory Id='INSTALLDIR' Name='Thing 1.0'>
 
             <Component Id='MainExecutable' Guid='059035F2-A47C-4407-8459-0597276DF276'>
-              <File Id='ThingEXE' Name='Thing10.exe' LongName='ThingAppl10.exe' DiskId='1'
-                Source='ThingAppl10.exe' Vital='yes'>
-                <Shortcut Id="startmenuThing10" Directory="ProgramMenuDir" Name="Thing10" 
-                  LongName="Thing 1.0" WorkingDirectory='INSTALLDIR' Icon="Thing10.exe" IconIndex="0" />
-                <Shortcut Id="desktopThing10" Directory="DesktopFolder" Name="Thing10"
-                  LongName="Thing 1.0" WorkingDirectory='INSTALLDIR' Icon="Thing10.exe" IconIndex="0" />
+              <File Id='ThingEXE' Name='Thing10.exe' DiskId='1' Source='ThingAppl10.exe' Vital='yes'>
+                <Shortcut Id="startmenuThing10" Directory="ProgramMenuDir" Name="Thing 1.0" WorkingDirectory='INSTALLDIR' Icon="Thing10.exe" IconIndex="0" />
+                <Shortcut Id="desktopThing10" Directory="DesktopFolder" Name="Thing 1.0" WorkingDirectory='INSTALLDIR' Icon="Thing10.exe" IconIndex="0" />
               </File>
-              <RemoveFolder Id='ProgramMenuDir' On='uninstall' />
+              <RegistryKey Root="HKCU" Key="Software\Sample\Thing 1.0" Action="createAndRemoveOnUninstall">
+                <RegistryValue Name="Version" Value="[ProductVersion]" Type="string" KeyPath="yes"></RegistryValue>
+              </RegistryKey>
+              <RemoveFolder Id="MainExecutable_RemoveShortcutFolder" Directory="ProgramMenuDir" On='uninstall' />
             </Component>
 
             <Component Id='HelperLibrary' Guid='DFEB88F1-A60f-45E9-80F1-1AB62E66D73C'>
@@ -34,14 +34,17 @@
               <File Id='Manual' Name='Manual.pdf' DiskId='1' Source='Manual.pdf'>
                 <Shortcut Id="startmenuManual" Directory="ProgramMenuDir" Name="Manual" LongName="Instruction Manual" />
               </File>
+              <RegistryKey Root="HKCU" Key="Software\Sample\Thing 1.0\Manual" Action="createAndRemoveOnUninstall">
+                <RegistryValue Name="Version" Value="[ProductVersion]" Type="string" KeyPath="yes"></RegistryValue>
+              </RegistryKey>
             </Component>
 
           </Directory>
         </Directory>
       </Directory>
 
-      <Directory Id="ProgramMenuFolder" Name="PMenu" LongName="Programs">
-        <Directory Id="ProgramMenuDir" Name='Thing10' LongName="Thing 1.0" />
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name='Thing 1.0' />
       </Directory>
 
       <Directory Id="DesktopFolder" Name="Desktop" />

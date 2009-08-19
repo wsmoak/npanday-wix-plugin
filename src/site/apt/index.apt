@@ -10,7 +10,8 @@ NPanday WiX Plugin
 
  The NPanday WiX plugin makes it easy to integrate WiX into your NPanday build process.
 
- The plugin has been developed and tested with WiX version 2.0.5805.0.
+ The plugin has been developed and tested with WiX version 3.0.5419.0.  It should also work with other versions of WiX, assuming that your .wxs files
+ are compatible with the version of WiX that is available on your PATH.
 
  The integration tests for this plugin are based on the excellent tutorial at
  {{{http://www.tramontana.co.hu/wix/}http://www.tramontana.co.hu/wix/}}.
